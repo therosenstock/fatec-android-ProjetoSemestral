@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_pedidos"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PedidosFragment">
+
+    <TextView
+        android:id="@+id/tvPedidos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="17dp"
+        android:text="@string/pedidos"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/etCodigoPedido"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etCodigoPedido"
+        android:layout_width="268dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="142dp"
+        android:ems="10"
+        android:hint="@string/codigo"
+        android:inputType="numberSigned"
+        android:textColorHint="#546E7A"
+        app:layout_constraintBottom_toTopOf="@+id/spStatusPedido"
+        app:layout_constraintEnd_toStartOf="@+id/btnBuscarPedido"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/etNomeClientePedido"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="13dp"
+        android:ems="10"
+        android:hint="@string/nome"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/etPrecoFretePedido"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBuscarPedido"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="Autofill" />
+
+    <Spinner
+        android:id="@+id/spStatusPedido"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="405dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCodigoPedido" />
+
+    <EditText
+        android:id="@+id/etPrecoFretePedido"
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="124dp"
+        android:ems="10"
+        android:hint="@string/preco"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/btnModificarPedidos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnBuscarPedido"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="Autofill" />
+
+    <Button
+        android:id="@+id/btnBuscarPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="18dp"
+        android:text="@string/buscar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/etCodigoPedido"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAvancarPedido"
+        android:layout_width="191dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="19dp"
+        android:text="@string/avancar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnModificarPedidos"
+        tools:ignore="TextSizeCheck" />
+
+    <Button
+        android:id="@+id/btnExcluirPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/excluir"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnModificarPedidos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.693"
+        app:layout_constraintStart_toEndOf="@+id/btnModificarPedidos" />
+
+    <Button
+        android:id="@+id/btnModificarPedidos"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="44dp"
+        android:text="@string/modificar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnInserirPedido"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <Button
+        android:id="@+id/btnInserirPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/inserir"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnModificarPedidos"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

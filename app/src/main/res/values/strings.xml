@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Vendas nas Redes Sociais</string>
+    <string name="inicio">Bem vindo!</string>
+    <string name="codigo">Código</string>
+    <string name="nome">Nome</string>
+    <string name="quantidade">Quantidade</string>
+    <string name="status">Status</string>
+    <string name="inserir">Inserir</string>
+    <string name="modificar">Modificar</string>
+    <string name="excluir">Excluir</string>
+    <string name="buscar">Buscar</string>
+    <string name="listar">Listar</string>
+    <string name="preco">Preço</string>
+    <string name="frete">Valor do frete</string>
+    <string name="pedidos">Pedidos</string>
+    <string name="pedido">Pedido</string>
+    <string name="produtos">Produtos</string>
+    <string name="Itens">Itens</string>
+    <string name="listaPedidos">Lista de pedidos</string>
+    <string name="avancar">Avançar para pedidos</string>
+</resources>

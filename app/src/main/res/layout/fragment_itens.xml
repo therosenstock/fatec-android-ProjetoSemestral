@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_itens"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ItensFragment">
+
+    <TextView
+        android:id="@+id/tvItens"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="18dp"
+        android:text="@string/Itens"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/etCodigoPedidoItem"
+        app:layout_constraintEnd_toEndOf="@+id/etCodigoPedidoItem"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etCodigoPedidoItem"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="14dp"
+        android:ems="10"
+        android:hint="@string/pedido"
+        android:inputType="numberSigned"
+        android:textColorHint="#546E7A"
+        app:layout_constraintBottom_toTopOf="@+id/etCodigoItem"
+        app:layout_constraintEnd_toStartOf="@+id/btnBuscarItem"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvItens"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/etCodigoItem"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:hint="@string/codigo"
+        android:inputType="numberSigned"
+        app:layout_constraintBottom_toTopOf="@+id/spProdutoItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBuscarItem"
+        tools:ignore="Autofill,VisualLintTextFieldSize" />
+
+    <Spinner
+        android:id="@+id/spProdutoItem"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="11dp"
+        app:layout_constraintBottom_toTopOf="@+id/etQuantidadeItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCodigoItem" />
+
+    <EditText
+        android:id="@+id/etQuantidadeItem"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="412dp"
+        android:ems="10"
+        android:hint="@string/quantidade"
+        android:inputType="numberSigned"
+        android:textColorHint="#546E7A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spProdutoItem"
+        tools:ignore="Autofill,VisualLintTextFieldSize" />
+
+    <Button
+        android:id="@+id/btnBuscarItem"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="14dp"
+        android:text="@string/buscar"
+        app:layout_constraintBottom_toTopOf="@+id/etCodigoItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/etCodigoPedidoItem"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnListarItem"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:text="@string/listar"
+        app:layout_constraintBottom_toTopOf="@+id/tvListaItens"
+        app:layout_constraintEnd_toEndOf="@+id/btnExcluirItem"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btnExcluirItem"
+        app:layout_constraintTop_toBottomOf="@+id/btnExcluirItem"
+        tools:ignore="TextSizeCheck" />
+
+    <Button
+        android:id="@+id/btnExcluirItem"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/excluir"
+        app:layout_constraintBottom_toTopOf="@+id/btnListarItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnModificarItem"
+        app:layout_constraintTop_toBottomOf="@+id/etQuantidadeItem" />
+
+    <Button
+        android:id="@+id/btnModificarItem"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginEnd="2dp"
+        android:text="@string/modificar"
+        app:layout_constraintBottom_toBottomOf="@+id/btnInserirItem"
+        app:layout_constraintEnd_toStartOf="@+id/btnExcluirItem"
+        app:layout_constraintStart_toEndOf="@+id/btnInserirItem"
+        app:layout_constraintTop_toTopOf="@+id/btnInserirItem"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnInserirItem"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginBottom="346dp"
+        android:text="@string/inserir"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnModificarItem"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etCodigoItem"
+        app:layout_constraintVertical_bias="0.937" />
+
+    <TextView
+        android:id="@+id/tvListaItens"
+        android:layout_width="379dp"
+        android:layout_height="254dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnListarItem" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
