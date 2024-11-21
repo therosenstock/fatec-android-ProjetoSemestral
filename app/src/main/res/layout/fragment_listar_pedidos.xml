@@ -7,62 +7,80 @@
     android:layout_height="match_parent"
     tools:context=".ListarPedidosFragment">
 
-    <EditText
-        android:id="@+id/edCodigoListaPedidos"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginBottom="16dp"
-        android:ems="10"
-        android:hint="@string/codigo"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/tvListaPedidos"
-        app:layout_constraintEnd_toStartOf="@+id/btnBuscarLista"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="Autofill" />
-
-    <TextView
-        android:id="@+id/tvListaPedidos"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="22dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="25dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edCodigoListaPedidos" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tvListarPedidos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="11dp"
-        android:text="@string/listaPedidos"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/edCodigoListaPedidos"
-        app:layout_constraintEnd_toStartOf="@+id/btnBuscarLista"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/btnBuscarLista"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginBottom="18dp"
-        android:text="@string/buscar"
-        app:layout_constraintBottom_toTopOf="@+id/tvListaPedidos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/edCodigoListaPedidos"
-        app:layout_constraintTop_toTopOf="parent" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tvListarPedidos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/listaPedidos"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp">
+
+            <EditText
+                android:id="@+id/edCodigoListaPedidos"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/codigo"
+                android:inputType="text"
+                tools:ignore="Autofill" />
+
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btnBuscarLista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/buscar" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp">
+
+            <TextView
+                android:id="@+id/tvListaPedidos"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

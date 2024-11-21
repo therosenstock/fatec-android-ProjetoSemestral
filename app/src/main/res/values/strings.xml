@@ -17,5 +17,5 @@
     <string name="produtos">Produtos</string>
     <string name="Itens">Itens</string>
     <string name="listaPedidos">Lista de pedidos</string>
-    <string name="avancar">Avançar para pedidos</string>
+    <string name="avancar">Avançar para itens</string>
 </resources>

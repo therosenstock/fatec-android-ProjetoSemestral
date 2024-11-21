@@ -12,6 +12,14 @@ public class ItemPedidoController implements IController<ItemPedido>{
 
     public ItemPedidoController(ItemPedidoDao itemDao) {
         this.itemDao = itemDao;
+
+        try {
+            if(this.itemDao.open() == null){
+                itemDao.open();
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
@@ -20,7 +28,7 @@ public class ItemPedidoController implements IController<ItemPedido>{
             itemDao.open();
         }
         itemDao.insert(itemPedido);
-        itemDao.close();
+//        itemDao.close();
     }
 
     @Override
@@ -29,7 +37,7 @@ public class ItemPedidoController implements IController<ItemPedido>{
             itemDao.open();
         }
         itemDao.update(itemPedido);
-        itemDao.close();
+//        itemDao.close();
     }
 
     @Override
@@ -38,7 +46,7 @@ public class ItemPedidoController implements IController<ItemPedido>{
             itemDao.open();
         }
         itemDao.delete(itemPedido);
-        itemDao.close();
+//        itemDao.close();
     }
 
     @Override

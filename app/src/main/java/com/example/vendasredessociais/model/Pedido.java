@@ -55,8 +55,8 @@ public class Pedido extends Calculavel{
     @Override
     public String toString() {
         return "Pedido: " + codigo +
-                "#\n " + nomeCliente  +" - Frete: R$ " + valorFrete +
-                "\n Status: " + status + "\n Itens: \n";
+                "#\n" + nomeCliente  +" - Frete: R$ " + valorFrete +
+                "\nStatus: " + status + "\nItens: \n";
     }
 
     @Override
