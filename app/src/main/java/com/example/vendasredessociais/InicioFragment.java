@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 public class InicioFragment extends Fragment {
-
+    /*
+     *@author:<Fabiola Rodrigues dos Santos / RA: 1110482313011>
+     */
 
     private View view;
 

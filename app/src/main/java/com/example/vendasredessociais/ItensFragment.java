@@ -29,7 +29,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ItensFragment extends Fragment {
-
+    /*
+     *@author:<Fabiola Rodrigues dos Santos / RA: 1110482313011>
+     */
     View view;
     private TextView tvItens;
     private EditText etCodigoPedidoItem;

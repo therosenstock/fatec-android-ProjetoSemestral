@@ -20,7 +20,9 @@ public class PedidoDao implements ICRUDDao<Pedido>, IPedidoDao {
     public PedidoDao(Context context) {
         this.context = context;
     }
-
+    /*
+     *@author:<Fabiola Rodrigues dos Santos / RA: 1110482313011>
+     */
 
     @Override
     public PedidoDao open() throws SQLException {

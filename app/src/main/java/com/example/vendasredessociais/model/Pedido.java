@@ -3,6 +3,9 @@ package com.example.vendasredessociais.model;
 import java.util.List;
 
 public class Pedido extends Calculavel{
+    /*
+     *@author:<Fabiola Rodrigues dos Santos / RA: 1110482313011>
+     */
     private int codigo;
     private double valorFrete;
     private String nomeCliente;

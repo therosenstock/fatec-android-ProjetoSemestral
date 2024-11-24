@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ProdutoController implements IController<Produto> {
+    /*
+     *@author:<Fabiola Rodrigues dos Santos / RA: 1110482313011>
+     */
     private final ProdutoDao produtoDao;
 
     public ProdutoController(ProdutoDao produtoDao) {

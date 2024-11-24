@@ -1,6 +1,9 @@
 package com.example.vendasredessociais.model;
 
 public class ItemPedido extends Calculavel{
+    /*
+     *@author:<Fabiola Rodrigues dos Santos / RA: 1110482313011>
+     */
     private int codigoItem;
     private Produto produto;
     private Pedido pedido;

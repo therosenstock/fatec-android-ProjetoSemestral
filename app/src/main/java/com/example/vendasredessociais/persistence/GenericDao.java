@@ -6,6 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 
 public class GenericDao extends SQLiteOpenHelper {
+    /*
+     *@author:<Fabiola Rodrigues dos Santos / RA: 1110482313011>
+     */
     private static final String DATABASE = "VENDAS.DB";
     private static final int DATABASE_VER = 1;
     private static final String CREATE_TABLE_PRODUTO =

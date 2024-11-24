@@ -14,7 +14,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class ProdutoDao implements IProdutoDao, ICRUDDao<Produto>{
-
+    /*
+     *@author:<Fabiola Rodrigues dos Santos / RA: 1110482313011>
+     */
     private final Context context;
     private GenericDao gDao;
     private SQLiteDatabase db;

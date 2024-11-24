@@ -7,6 +7,9 @@ public class Produto {
     private int quantidade;
 
     public Produto() {}
+    /*
+     *@author:<Fabiola Rodrigues dos Santos / RA: 1110482313011>
+     */
 
     public Produto(int codigo, String nome, double preco, int quantidade) {
         this.codigo = codigo;

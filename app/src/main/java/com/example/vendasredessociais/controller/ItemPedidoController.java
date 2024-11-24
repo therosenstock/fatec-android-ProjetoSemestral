@@ -8,6 +8,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class ItemPedidoController implements IController<ItemPedido>{
+    /*
+     *@author:<Fabiola Rodrigues dos Santos / RA: 1110482313011>
+     */
     private final ItemPedidoDao itemDao;
 
     public ItemPedidoController(ItemPedidoDao itemDao) {

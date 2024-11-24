@@ -26,7 +26,9 @@ import java.util.List;
 
 
 public class PedidosFragment extends Fragment {
-
+    /*
+     *@author:<Fabiola Rodrigues dos Santos / RA: 1110482313011>
+     */
     View view;
     private TextView tvPedidos;
     private EditText etCodigoPedido;
