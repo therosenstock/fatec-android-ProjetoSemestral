@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,6 +53,7 @@ public class ProdutosFragment extends Fragment {
         btnExcluirProduto = view.findViewById(R.id.btnExcluirProduto);
         btnListarProduto = view.findViewById(R.id.btnListarProduto);
         tvListaProdutos = view.findViewById(R.id.tvListaProdutos);
+        tvListaProdutos.setMovementMethod(new ScrollingMovementMethod());
 
         controller = new ProdutoController(new ProdutoDao(view.getContext()));
 

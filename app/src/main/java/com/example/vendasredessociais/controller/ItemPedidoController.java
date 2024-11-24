@@ -64,4 +64,11 @@ public class ItemPedidoController implements IController<ItemPedido>{
         }
         return itemDao.findAll();
     }
+
+    public List<ItemPedido> findItemsPedido(int busca) throws SQLException {
+        if(itemDao.open() == null){
+            itemDao.open();
+        }
+        return itemDao.findItemsPedido(busca);
+    }
 }

@@ -56,6 +56,13 @@ public class ProdutoController implements IController<Produto> {
         return produtoDao.findAll();
 
     }
+    public List<Produto> listarComEstoque() throws SQLException {
+        if(produtoDao.open() == null){
+            produtoDao.open();
+        }
+        return produtoDao.findAllWithStorage();
+
+    }
 
     public boolean possuiEstoque(int codProduto, int quantidade) throws SQLException{
         if(produtoDao.open() == null){

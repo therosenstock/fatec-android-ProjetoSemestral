@@ -117,7 +117,7 @@ public class ItemPedidoDao implements ICRUDDao<ItemPedido>, IItemPedidoDao {
         if(cursor != null){
             cursor.moveToFirst();
         }
-        if(!cursor.isAfterLast()){
+        while(!cursor.isAfterLast()){
             Produto produto = new Produto();
             produto.setCodigo(cursor.getInt(cursor.getColumnIndex("cod_produto")));
             produto.setNome(cursor.getString(cursor.getColumnIndex("nome_produto")));
@@ -137,6 +137,49 @@ public class ItemPedidoDao implements ICRUDDao<ItemPedido>, IItemPedidoDao {
             itemPedido.setProduto(produto);
 
             itemsPedido.add(itemPedido);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return itemsPedido;
+    }
+    @SuppressLint("Range")
+    public List<ItemPedido> findItemsPedido(int busca) throws SQLException {
+
+        List<ItemPedido> itemsPedido = new ArrayList<>();
+        String sql = "SELECT i.cod_itempedido as cod_itempedido, " +
+                "i.quantidade as quantidade, p.cod_produto as cod_produto, " +
+                " p.nome_produto as nome_produto, p.preco_produto as preco_produto," +
+                " p.quantidade as quantidade_estoque, pe.cod_pedido as cod_pedido, " +
+                " pe.nome_cliente as nome_cliente, pe.preco_frete as preco_frete, pe.status_pedido as status_pedido " +
+                " FROM item_pedido i " +
+                "INNER JOIN produto p  ON p.cod_produto = i.cod_produto " +
+                "INNER JOIN pedido pe ON pe.cod_pedido = i.cod_pedido" +
+                " WHERE i.cod_pedido = "+busca+" ;";
+        Cursor cursor = db.rawQuery(sql, null);
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
+        while(!cursor.isAfterLast()){
+            Produto produto = new Produto();
+            produto.setCodigo(cursor.getInt(cursor.getColumnIndex("cod_produto")));
+            produto.setNome(cursor.getString(cursor.getColumnIndex("nome_produto")));
+            produto.setPreco(cursor.getDouble(cursor.getColumnIndex("preco_produto")));
+            produto.setQuantidade(cursor.getInt(cursor.getColumnIndex("quantidade_estoque")));
+
+            Pedido pedido = new Pedido();
+            pedido.setCodigo(cursor.getInt(cursor.getColumnIndex("cod_pedido")));
+            pedido.setNomeCliente(cursor.getString(cursor.getColumnIndex("nome_cliente")));
+            pedido.setValorFrete(cursor.getDouble(cursor.getColumnIndex("preco_frete")));
+            pedido.setStatus(cursor.getString(cursor.getColumnIndex("status_pedido")));
+
+            ItemPedido itemPedido = new ItemPedido();
+            itemPedido.setCodigoItem(cursor.getInt(cursor.getColumnIndex("cod_itempedido")));
+            itemPedido.setQuantidade(cursor.getInt(cursor.getColumnIndex("quantidade")));
+            itemPedido.setPedido(pedido);
+            itemPedido.setProduto(produto);
+
+            itemsPedido.add(itemPedido);
+            cursor.moveToNext();
         }
         cursor.close();
         return itemsPedido;

@@ -83,7 +83,28 @@ public class ProdutoDao implements IProdutoDao, ICRUDDao<Produto>{
     @Override
     public List<Produto> findAll() throws SQLException {
         List<Produto> produtos = new ArrayList<>();
-        String sql = "SELECT * FROM produto";
+        String sql = "SELECT * FROM produto ORDER BY cod_produto";
+        Cursor cursor = db.rawQuery(sql, null);
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
+        while(!cursor.isAfterLast()){
+            Produto produto = new Produto();
+            produto.setCodigo(cursor.getInt(cursor.getColumnIndex("cod_produto")));
+            produto.setNome(cursor.getString(cursor.getColumnIndex("nome_produto")));
+            produto.setPreco(cursor.getDouble(cursor.getColumnIndex("preco_produto")));
+            produto.setQuantidade(cursor.getInt(cursor.getColumnIndex("quantidade")));
+            produtos.add(produto);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return produtos;
+    }
+
+    @SuppressLint("Range")
+    public List<Produto> findAllWithStorage() throws SQLException {
+        List<Produto> produtos = new ArrayList<>();
+        String sql = "SELECT * FROM produto WHERE quantidade > 0";
         Cursor cursor = db.rawQuery(sql, null);
         if(cursor != null){
             cursor.moveToFirst();

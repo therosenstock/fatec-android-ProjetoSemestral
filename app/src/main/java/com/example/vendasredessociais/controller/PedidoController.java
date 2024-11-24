@@ -56,4 +56,5 @@ public class PedidoController implements IController<Pedido> {
         }
         return pedidoDao.findAll();
     }
+
 }

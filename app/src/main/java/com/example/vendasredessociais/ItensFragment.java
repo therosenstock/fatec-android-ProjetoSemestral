@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.example.vendasredessociais.persistence.ItemPedidoDao;
 import com.example.vendasredessociais.persistence.PedidoDao;
 import com.example.vendasredessociais.persistence.ProdutoDao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class ItensFragment extends Fragment {
@@ -43,6 +45,7 @@ public class ItensFragment extends Fragment {
     private List<Produto> produtos;
     private ItemPedidoController itemController;
     private PedidoController pedidoController;
+    private ProdutoController produtoController;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,13 +64,14 @@ public class ItensFragment extends Fragment {
         btnModificarItem = view.findViewById(R.id.btnModificarItem);
         btnInserirItem = view.findViewById(R.id.btnInserirItem);
         tvListaItens = view.findViewById(R.id.tvListaItens);
+        tvListaItens.setMovementMethod(new ScrollingMovementMethod());
 
         itemController = new ItemPedidoController(new ItemPedidoDao(view.getContext()));
         pedidoController = new PedidoController(new PedidoDao(view.getContext()));
-        ProdutoController produtoController = new ProdutoController(new ProdutoDao(view.getContext()));
+        produtoController = new ProdutoController(new ProdutoDao(view.getContext()));
 
         try {
-            produtos = produtoController.listar();
+            produtos = produtoController.listarComEstoque();
             Produto produto = new Produto();
             produto.setCodigo(0);
             produto.setNome("Selecione um produto...");
@@ -92,54 +96,79 @@ public class ItensFragment extends Fragment {
     }
 
     public void inserirItem() {
-        String codigo, codigoPedido, quantidade;
-        Produto produto = (Produto) spProdutoItem.getSelectedItem();
-        codigo = etCodigoItem.getText().toString();
-        codigoPedido = etCodigoPedidoItem.getText().toString();
-        quantidade = etQuantidadeItem.getText().toString();
+        int posicao = spProdutoItem.getSelectedItemPosition();
+        if(posicao>0) {
+            String codigo, codigoPedido, quantidade;
+            Produto produto = (Produto) spProdutoItem.getSelectedItem();
+            codigo = etCodigoItem.getText().toString();
+            codigoPedido = etCodigoPedidoItem.getText().toString();
+            quantidade = etQuantidadeItem.getText().toString();
 
+            int verificacao = produto.getQuantidade() - Integer.parseInt(quantidade);
+            if(verificacao < 0){
+                Toast.makeText(view.getContext(), "A quantidade selecionada não deve ser superior ao estoque!", Toast.LENGTH_LONG).show();
+            }else {
+                produto.setQuantidade(verificacao);
+                corrigirEstoqueProduto(produto);
+                try {
+                    Pedido pedido = new Pedido();
+                    pedido.setCodigo(Integer.parseInt(codigoPedido));
+                    pedidoController.buscar(pedido);
+
+                    ItemPedido item = new ItemPedido();
+                    item.setCodigoItem(Integer.parseInt(codigo));
+                    item.setProduto(produto);
+                    item.setQuantidade(Integer.parseInt(quantidade));
+                    item.setPedido(pedido);
+
+                    itemController.inserir(item);
+                    limpar();
+                    Toast.makeText(getContext(), "Item inserido", Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), "Error ao inserir item", Toast.LENGTH_LONG).show();
+                }
+            }
+        } else{
+            Toast.makeText(view.getContext(), "Selecione um produto!", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    public void corrigirEstoqueProduto(Produto produto){
         try {
-            Pedido pedido = new Pedido();
-            pedido.setCodigo(Integer.parseInt(codigoPedido));
-            pedidoController.buscar(pedido);
-
-            ItemPedido item = new ItemPedido();
-            item.setCodigoItem(Integer.parseInt(codigo));
-            item.setProduto(produto);
-            item.setQuantidade(Integer.parseInt(quantidade));
-            item.setPedido(pedido);
-
-            itemController.inserir(item);
-            limpar();
-            Toast.makeText(getContext(), "Item inserido", Toast.LENGTH_LONG).show();
-        } catch (Exception e) {
-            Toast.makeText(getContext(), "Error ao inserir item", Toast.LENGTH_LONG).show();
+            produtoController.modificar(produto);
+        } catch (SQLException e) {
+            Toast.makeText(getContext(), "Error ao atualizar estoque", Toast.LENGTH_LONG).show();
         }
     }
 
     public void modificarItem() {
-        String codigo, codigoPedido, quantidade;
-        Produto produto = (Produto) spProdutoItem.getSelectedItem();
-        codigo = etCodigoItem.getText().toString();
-        codigoPedido = etCodigoPedidoItem.getText().toString();
-        quantidade = etQuantidadeItem.getText().toString();
+        int posicao = spProdutoItem.getSelectedItemPosition();
+        if(posicao>0) {
+            String codigo, codigoPedido, quantidade;
+            Produto produto = (Produto) spProdutoItem.getSelectedItem();
+            codigo = etCodigoItem.getText().toString();
+            codigoPedido = etCodigoPedidoItem.getText().toString();
+            quantidade = etQuantidadeItem.getText().toString();
 
-        try {
-            Pedido pedido = new Pedido();
-            pedido.setCodigo(Integer.parseInt(codigoPedido));
-            pedidoController.buscar(pedido);
+            try {
+                Pedido pedido = new Pedido();
+                pedido.setCodigo(Integer.parseInt(codigoPedido));
+                pedidoController.buscar(pedido);
 
-            ItemPedido item = new ItemPedido();
-            item.setCodigoItem(Integer.parseInt(codigo));
-            item.setProduto(produto);
-            item.setQuantidade(Integer.parseInt(quantidade));
-            item.setPedido(pedido);
+                ItemPedido item = new ItemPedido();
+                item.setCodigoItem(Integer.parseInt(codigo));
+                item.setProduto(produto);
+                item.setQuantidade(Integer.parseInt(quantidade));
+                item.setPedido(pedido);
 
-            itemController.modificar(item);
-            limpar();
-            Toast.makeText(getContext(), "Item modificado", Toast.LENGTH_LONG).show();
-        } catch (Exception e) {
-            Toast.makeText(getContext(), "Error ao modificar item", Toast.LENGTH_LONG).show();
+                itemController.modificar(item);
+                limpar();
+                Toast.makeText(getContext(), "Item modificado", Toast.LENGTH_LONG).show();
+            } catch (Exception e) {
+                Toast.makeText(getContext(), "Error ao modificar item", Toast.LENGTH_LONG).show();
+            }
+        } else{
+            Toast.makeText(view.getContext(), "Selecione um produto!", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -168,8 +197,6 @@ public class ItensFragment extends Fragment {
             item.setCodigoItem(Integer.parseInt(codigo));
 
             itemController.buscar(item);
-
-            System.out.println(item);
 
             int index;
 

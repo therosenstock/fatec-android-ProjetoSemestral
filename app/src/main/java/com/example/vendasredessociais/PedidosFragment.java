@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -151,16 +153,11 @@ public class PedidosFragment extends Fragment {
     }
 
     public void avancar() {
-        Bundle bundle = new Bundle();
-        Intent intent = new Intent(getContext(), PedidosFragment.class);
-        bundle.putString("tipo", "items");
-        intent.putExtras(bundle);
-        try {
-            getActivity().startActivity(intent);
-            getActivity().finish();
-        } catch (Exception e) {
-            Toast.makeText(getContext(), "Erro ao navegar para itens", Toast.LENGTH_LONG).show();
-        }
+        Fragment fragment = new ItensFragment();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment, fragment);
+        fragmentTransaction.commit();
     }
 
     private void limpar() {
