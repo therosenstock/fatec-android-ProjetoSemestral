@@ -73,6 +73,7 @@ public class ListarPedidosFragment extends Fragment {
             sb.append(itens);
             tvListaPedidos.setText(sb.toString());
             edCodigoListaPedidos.setText("");
+
         } catch (Exception e) {
             Toast.makeText(getContext(), "Erro ao buscar pedido", Toast.LENGTH_LONG).show();
         }

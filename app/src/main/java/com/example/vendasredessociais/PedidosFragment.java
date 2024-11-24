@@ -95,7 +95,7 @@ public class PedidosFragment extends Fragment {
 
             controller.inserir(pedido);
             limpar();
-            Toast.makeText(getContext(), "Produto inserido", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Pedido inserido", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             Toast.makeText(getContext(), "Erro ao inserir pedido", Toast.LENGTH_LONG).show();
         }
@@ -117,7 +117,7 @@ public class PedidosFragment extends Fragment {
 
             controller.modificar(pedido);
             limpar();
-            Toast.makeText(getContext(), "Produto modificado", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Pedido modificado", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             Toast.makeText(getContext(), "Erro ao modificar pedido", Toast.LENGTH_LONG).show();
         }
@@ -131,7 +131,7 @@ public class PedidosFragment extends Fragment {
             pedido.setCodigo(Integer.parseInt(codigo));
             controller.deletar(pedido);
             limpar();
-            Toast.makeText(getContext(), "Produto excluido", Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Pedido excluido", Toast.LENGTH_LONG).show();
         } catch (Exception e) {
             Toast.makeText(getContext(), "Erro ao excluir pedido", Toast.LENGTH_LONG).show();
         }
@@ -144,11 +144,15 @@ public class PedidosFragment extends Fragment {
             Pedido pedido = new Pedido();
             pedido.setCodigo(Integer.parseInt(codigo));
             controller.buscar(pedido);
-            etCodigoPedido.setText(String.valueOf(pedido.getCodigo()));
-            etNomeClientePedido.setText(pedido.getNomeCliente());
-            etPrecoFretePedido.setText(String.valueOf(pedido.getValorFrete()));
-            spStatusPedido.setSelection(itensStatus.indexOf(pedido.getStatus()));
-            Toast.makeText(getContext(), "Produto excluido", Toast.LENGTH_LONG).show();
+            if(pedido.getCodigo() > 0) {
+                etCodigoPedido.setText(String.valueOf(pedido.getCodigo()));
+                etNomeClientePedido.setText(pedido.getNomeCliente());
+                etPrecoFretePedido.setText(String.valueOf(pedido.getValorFrete()));
+                spStatusPedido.setSelection(itensStatus.indexOf(pedido.getStatus()));
+                Toast.makeText(getContext(), "Pedido encontrado!", Toast.LENGTH_LONG).show();
+            } else{
+                Toast.makeText(getContext(), "Pedido não encontrado", Toast.LENGTH_LONG).show();
+            }
         } catch (Exception e) {
             Toast.makeText(getContext(), "Erro ao excluir pedido", Toast.LENGTH_LONG).show();
         }
